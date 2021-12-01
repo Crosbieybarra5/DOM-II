@@ -47,7 +47,40 @@ window.addEventListener('load', (event) => {
 
 //FOCUS
 
-const buttonChange = document.querySelector('.btn');
-buttonChange.addEventListener('focus', (event) => {
+const bodyChange = document.querySelector('body');
+bodyChange.addEventListener('focus', function(event){
     event.target.style.backgroundColor = 'pink';
+}, true);
+
+//RESIZE
+
+window.addEventListener('resize', (event) => {
+    let windowWidth = window.outerWidth;
+    let windowHeight = window.outerHeight;
+    console.log( "Window size: width=" + windowWidth + ", height=" + windowHeight)
 })
+
+
+//SCROLL
+
+window.addEventListener('scroll', (event)=> {
+    console.log("scrolling")
+    event.stopPropagation();
+})
+//SELECT
+function textSelection(event) {
+    const paras = document.querySelector('p');
+    const selection = event.target.value.substring(event.target.selectionStart, event.target.selectionEnd);
+    paras.textContent = `You selected: ${selection}`;
+  }
+
+const body = document.querySelector('body p');
+body.addEventListener('select', textSelection);
+ 
+//DBLCLICK
+let signMeUp = document.querySelectorAll('.btn');
+for(let i = 0; i < signMeUp.length; i++)
+signMeUp[i].addEventListener('dblclick', (event)=> {
+    alert('Working!')
+})
+//DRAG/DROP
